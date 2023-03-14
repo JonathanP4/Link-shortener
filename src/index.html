@@ -16,10 +16,10 @@
          <img class="bars" src="./images/bars-solid.svg" alt="">
       </nav>
       <div class="hero">
-         <div class="hero-img-container">
+         <div class="hero__img__container">
             <img src="./images/illustration-working.svg" alt="">
          </div>
-         <div>
+         <div class="hero__text">
             <h1>More than just shorter links</h1>
             <p>Build your brand's recognition and get detailed insights
                on how your links are performing.</p>
@@ -34,15 +34,19 @@
          <button type="button">Shorten It!</button>
       </div>
       <div class="stats-cotainer">
-         <h1 class="stats-title">Advanced Statistics</h1>
-         <p>Track how your links are performing across the web with our
-            advanced statistics dashboard.</p>
+         <div class="stat__text">
+            <h2 class="stats-title">Advanced Statistics</h2>
+            <p>Track how your links are performing across the web with our
+               advanced statistics dashboard.</p>
+         </div>
+
          <div class="stats">
+            <div class="stripe"></div>
             <div class="stat">
                <div class="stat-img-container">
                   <img src="./images/icon-brand-recognition.svg" alt="brand-recognition">
                </div>
-               <h1>Brand Recognition</h1>
+               <h3>Brand Recognition</h3>
                <p>Boost your brand recognition with each click. Generic links don't
                   mean a thing. Branded links help instil confidence in your content.</p>
             </div>
@@ -50,7 +54,7 @@
                <div class="stat-img-container">
                   <img src="./images/icon-detailed-records.svg" alt="detailed-records">
                </div>
-               <h1>Detailed Records</h1>
+               <h3>Detailed Records</h3>
                <p>Gain insights into who is clicking your links. Knowing when and where
                   people engage with your content helps inform better decisions.</p>
             </div>
@@ -58,19 +62,22 @@
                <div class="stat-img-container">
                   <img src="./images/icon-fully-customizable.svg" alt="fully-customizable">
                </div>
-               <h1>Fully Customizable</h1>
+               <h3>Fully Customizable</h3>
                <p>Improve brand awareness and content discoverability through customizable
                   links, supercharging audience engagement.</p>
             </div>
          </div>
       </div>
-      <div>
-         <h1>Boost your links today</h1>
-         <button type="button" class="btn--get-started">Get Started</button>
+      <div class="boost-links">
+         <h2>Boost your links today</h2>
+         <div class="btn-container">
+            <button type="button" class="btn--get-started btn--layer1">Get Started</button>
+            <button type="button" class="btn--get-started btn--layer2">Get Started</button>
+         </div>
       </div>
    </main>
    <footer>
-      <img src="./images/logo.svg" alt="shortly_logo">
+      <img class="logo" src="./images/logo.svg" alt="shortly_logo">
       <dl class="links">
          <div>
             <dt>Features</dt>
@@ -114,16 +121,16 @@
       </dl>
       <div class="socials">
          <a href="#">
-            <img src="./images/icon-facebook.svg" alt="facebook">
+            <img class="socials-icon" src="./images/icon-facebook.svg" alt="facebook">
          </a>
          <a href="#">
-            <img src="./images/icon-twitter.svg" alt="twitter">
+            <img class="socials-icon" src="./images/icon-twitter.svg" alt="twitter">
          </a>
          <a href="#">
-            <img src="./images/icon-pinterest.svg" alt="pinterest">
+            <img class="socials-icon" src="./images/icon-pinterest.svg" alt="pinterest">
          </a>
          <a href="#">
-            <img src="./images/icon-instagram.svg" alt="instagram">
+            <img class="socials-icon" src="./images/icon-instagram.svg" alt="instagram">
          </a>
       </div>
    </footer>
