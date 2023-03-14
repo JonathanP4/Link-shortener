@@ -1,0 +1,20 @@
+{
+  "name": "url-shortening",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel ./src/index.html",
+    "build": "parcel build ./src/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.8.3"
+  },
+  "dependencies": {
+    "@parcel/core": ">=2.8.3 <3.0.0",
+    "@parcel/transformer-sass": "^2.8.3"
+  }
+}
