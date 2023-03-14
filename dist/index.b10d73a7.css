@@ -122,7 +122,7 @@ nav {
   display: flex;
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 1040px) {
   nav {
     padding: 1.5rem 4rem;
   }
@@ -132,7 +132,7 @@ div.hero {
   padding: 1.5rem;
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 1040px) {
   div.hero {
     text-align: left;
     justify-content: space-between;
@@ -148,7 +148,7 @@ div.hero h1 {
   font-weight: 700;
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 1040px) {
   div.hero h1 {
     font-size: 5rem;
     line-height: 5.5rem;
@@ -160,7 +160,7 @@ div.hero p {
   font-weight: 500;
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 1040px) {
   div.hero p {
     width: 80%;
     font-size: 1.4rem;
@@ -173,12 +173,13 @@ div.hero .hero__img__container {
 
 div.hero .hero__img__container img {
   width: 140%;
-  max-width: none;
+  max-width: 640px;
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 1040px) {
   div.hero .hero__img__container img {
-    width: 150%;
+    width: 160%;
+    max-width: none;
   }
 
   div.hero .hero__img__container {
@@ -199,7 +200,7 @@ div.hero button {
   position: relative;
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 1040px) {
   .btn-container {
     justify-content: start;
   }
@@ -243,7 +244,7 @@ div.hero button {
   position: relative;
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 1040px) {
   .shortener-container {
     margin: 1.5rem 4rem;
     padding: 2rem;
@@ -257,7 +258,7 @@ div.hero button {
   font-size: 1rem;
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 1040px) {
   .shortener-container input {
     flex: 1 0 auto;
     display: flex;
@@ -279,7 +280,7 @@ div.hero button {
   position: relative;
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 1040px) {
   .stats-cotainer {
     padding: 4rem 4rem 12rem;
   }
@@ -290,7 +291,7 @@ div.hero button {
   margin-bottom: 1rem;
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 1040px) {
   .stats-cotainer .stat__text {
     width: 43%;
     max-width: 520px;
@@ -308,7 +309,7 @@ div.hero button {
   display: grid;
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 1040px) {
   .stats-cotainer .stats {
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
@@ -317,29 +318,33 @@ div.hero button {
 
 .stats-cotainer .stats .stripe {
   width: 10px;
-  height: 890px;
+  height: 110vh;
   position: absolute;
   left: 49%;
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 1040px) {
   .stats-cotainer .stats .stripe {
-    top: 10%;
+    height: 100vmin;
+    min-height: 635px;
+    top: 23%;
     transform: rotate(90deg);
   }
 }
 
 .stats-cotainer .stat {
   z-index: 20;
+  max-width: 422px;
   background-color: #fff;
   justify-content: center;
   gap: 1rem;
+  margin: 0 auto;
   padding: 2rem 1.2rem;
   display: grid;
   position: relative;
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 1040px) {
   .stats-cotainer .stat:nth-child(3) {
     transform: translateY(3rem);
   }
@@ -358,7 +363,7 @@ div.hero button {
   display: flex;
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 1040px) {
   .stats-cotainer .stat .stat-img-container {
     margin: -4.5rem auto 0 0;
   }
@@ -372,7 +377,7 @@ div.hero button {
   padding: 4rem 1.5rem;
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 1040px) {
   .boost-links {
     background-image: url("bg-boost-desktop.5a725d0f.svg");
     padding: 5rem 1.5rem;
@@ -384,7 +389,7 @@ div.hero button {
   margin-bottom: 1rem;
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 1040px) {
   .boost-links h2 {
     font-size: 2.5rem;
   }
@@ -394,7 +399,7 @@ div.hero button {
   margin: 0;
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 1040px) {
   .boost-links .btn-container {
     justify-content: center;
   }
@@ -405,7 +410,7 @@ footer {
   padding: 2rem;
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 800px) {
   footer {
     justify-content: space-around;
     align-items: baseline;
@@ -419,7 +424,7 @@ footer img.logo {
   margin-bottom: 2rem;
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 800px) {
   footer img.logo {
     margin-bottom: 0;
   }
@@ -430,12 +435,12 @@ footer dl, footer dl div {
   display: grid;
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 800px) {
   footer dl, footer dl div {
     text-align: left;
     grid-template-columns: repeat(3, 1fr);
     align-self: flex-start;
-    gap: 4rem;
+    gap: 5%;
   }
 }
 
@@ -457,7 +462,7 @@ footer .socials {
   display: flex;
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 800px) {
   footer .socials {
     margin-top: 0;
   }

@@ -81,7 +81,7 @@ nav {
    align-items: center;
    padding: 1.5rem;
 
-   @include media(1366px) {
+   @include media(1040px) {
       padding: 1.5rem 4rem;
    }
 }
@@ -89,7 +89,7 @@ nav {
 div.hero {
    padding: 1.5rem;
 
-   @include media(1366px) {
+   @include media(1040px) {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -102,7 +102,7 @@ div.hero {
       font-weight: 700;
       margin: 1.5rem 0;
 
-      @include media(1366px) {
+      @include media(1040px) {
          font-size: 5rem;
          line-height: 5.5rem;
       }
@@ -112,7 +112,7 @@ div.hero {
       font-size: 1rem;
       font-weight: 500;
 
-      @include media(1366px) {
+      @include media(1040px) {
          font-size: 1.4rem;
          width: 80%;
       }
@@ -123,14 +123,15 @@ div.hero {
 
       img {
          width: 140%;
-         max-width: none;
+         max-width: 640px;
 
-         @include media(1366px) {
-            width: 150%;
+         @include media(1040px) {
+            width: 160%;
+            max-width: none;
          }
       }
 
-      @include media(1366px) {
+      @include media(1040px) {
          order: 1;
          margin-top: 0;
       }
@@ -148,7 +149,7 @@ div.hero {
    position: relative;
    margin: 1.4rem 0 1.5rem 0;
 
-   @include media(1366px) {
+   @include media(1040px) {
       justify-content: start;
    }
 
@@ -193,7 +194,7 @@ div.hero {
    gap: 1rem;
    border-radius: .6rem;
 
-   @include media(1366px) {
+   @include media(1040px) {
       display: flex;
       padding: 2rem;
       margin: 1.5rem 4rem;
@@ -204,7 +205,7 @@ div.hero {
       padding: .7em;
       border-radius: .4rem;
 
-      @include media(1366px) {
+      @include media(1040px) {
          display: flex;
          flex: 1 0 auto;
       }
@@ -227,7 +228,7 @@ div.hero {
    padding: 4rem 1.5rem;
    position: relative;
 
-   @include media(1366px) {
+   @include media(1040px) {
       padding: 4rem;
       padding-bottom: 12rem;
    }
@@ -238,7 +239,7 @@ div.hero {
          margin-bottom: 1rem;
       }
 
-      @include media(1366px) {
+      @include media(1040px) {
          margin: 0 auto;
          width: 43%;
          max-width: 520px;
@@ -254,7 +255,7 @@ div.hero {
       gap: 5.25rem;
       margin-top: 5rem;
 
-      @include media(1366px) {
+      @include media(1040px) {
          grid-template-columns: repeat(3, 1fr);
          gap: 2rem;
       }
@@ -264,11 +265,13 @@ div.hero {
          position: absolute;
          left: 49%;
          width: 10px;
-         height: 890px;
+         height: 110vh;
 
-         @include media(1366px) {
+         @include media(1040px) {
             transform: rotate(90deg);
-            top: 10%;
+            top: 23%;
+            height: 100vmin;
+            min-height: 635px;
          }
       }
    }
@@ -281,8 +284,10 @@ div.hero {
       display: grid;
       justify-content: center;
       gap: 1rem;
+      max-width: 422px;
+      margin: 0 auto;
 
-      @include media(1366px) {
+      @include media(1040px) {
          &:nth-child(3) {
             transform: translateY(3rem)
          }
@@ -301,7 +306,7 @@ div.hero {
          justify-content: center;
          border-radius: 100%;
 
-         @include media(1366px) {
+         @include media(1040px) {
             margin: -4.5rem auto 0 0;
          }
       }
@@ -316,7 +321,7 @@ div.hero {
    background-repeat: no-repeat;
    padding: 4rem 1.5rem;
 
-   @include media(1366px) {
+   @include media(1040px) {
       padding: 5rem 1.5rem;
       background-image: url('../images/bg-boost-desktop.svg');
    }
@@ -325,7 +330,7 @@ div.hero {
       color: white;
       margin-bottom: 1rem;
 
-      @include media(1366px) {
+      @include media(1040px) {
          font-size: 2.5rem;
       }
    }
@@ -333,7 +338,7 @@ div.hero {
    .btn-container {
       margin: 0;
 
-      @include media(1366px) {
+      @include media(1040px) {
          justify-content: center
       }
    }
@@ -344,7 +349,7 @@ footer {
    padding: 2rem;
    color: white;
 
-   @include media(1366px) {
+   @include media(800px) {
       display: flex;
       align-items: baseline;
       padding: 6rem 0;
@@ -355,7 +360,7 @@ footer {
       filter: invert(100%);
       margin-bottom: 2rem;
 
-      @include media(1366px) {
+      @include media(800px) {
          margin-bottom: 0;
       }
    }
@@ -364,9 +369,9 @@ footer {
       display: grid;
       gap: 2rem;
 
-      @include media(1366px) {
+      @include media(800px) {
          grid-template-columns: repeat(3, 1fr);
-         gap: 4rem;
+         gap: 5%;
          text-align: left;
          align-self: flex-start
       }
@@ -394,7 +399,7 @@ footer {
       margin-top: 2rem;
       padding: 0 2rem;
 
-      @include media(1366px) {
+      @include media(800px) {
          margin-top: 0;
       }
    }
