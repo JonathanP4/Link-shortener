@@ -180,51 +180,138 @@ div.hero {
    }
 }
 
-.shortener-container {
-   @extend .bg-dark-violet;
+.form-container {
    position: relative;
    z-index: 2;
-   background-image: url('../images/bg-shorten-mobile.svg');
-   background-repeat: no-repeat;
-   background-position: 5pc -2pc;
-   background-size: contain;
-   padding: 1.5rem;
-   margin: 1.5rem;
+
+   .shortener-container {
+      position: relative;
+      z-index: 2;
+      @extend .bg-dark-violet;
+      background-image: url('../images/bg-shorten-mobile.svg');
+      background-repeat: no-repeat;
+      background-position: 5pc -2pc;
+      background-size: contain;
+      padding: 1.5rem;
+      margin: 1.5rem;
+      display: grid;
+      border-radius: .6rem;
+
+      @include media(1040px) {
+         margin: 1.5rem 4rem;
+         display: flex;
+         padding: 2rem;
+      }
+
+      .error-message {
+         @extend .text-red;
+         // display: none;
+         text-align: left;
+         font-size: .8rem;
+      }
+
+      input {
+         font-size: 1rem;
+         padding: .7em;
+         border-radius: .4rem;
+
+         @include media(1040px) {
+            display: flex;
+            flex: 1 0 auto;
+         }
+
+         &.error {
+            border: 2px solid map-get(var.$colors, 'red');
+         }
+
+         &::placeholder {
+            @extend .text-gray;
+            font-weight: 500
+         }
+      }
+
+      button {
+         @extend .btn--get-started;
+         border-radius: .4rem;
+         margin-top: 1rem;
+      }
+   }
+
+   .bg-alt {
+      background-color: #f0f1f6;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 53%;
+      z-index: 1;
+      height: 14rem;
+   }
+}
+
+.shortened-links {
+   position: relative;
    display: grid;
    gap: 1rem;
-   border-radius: .6rem;
+   background-color: #f0f1f6;
+   z-index: 2;
+}
+
+.link__short {
+   background-color: white;
+   border-radius: .4rem;
+   display: grid;
+   gap: .6rem;
+   align-items: center;
+   margin-bottom: 1rem;
+   font-size: .9rem;
+   padding: 1rem;
+   margin: 0 1.5rem;
 
    @include media(1040px) {
       display: flex;
-      padding: 2rem;
-      margin: 1.5rem 4rem;
+      margin: 0 4rem;
+      justify-content: space-between;
    }
 
-   input {
-      font-size: 1rem;
-      padding: .7em;
-      border-radius: .4rem;
+   div:nth-child(1) {
+      text-align: left;
+      border-bottom: 1px solid map-get(var.$colors, 'gray');
+
+      @include media(1040px) {
+         margin-left: 1rem;
+         border-bottom: none;
+      }
+   }
+
+   div:nth-child(2) {
+      display: grid;
+      text-align: left;
+      gap: .6rem;
+      font-weight: 600;
 
       @include media(1040px) {
          display: flex;
-         flex: 1 0 auto;
+         align-items: center
       }
+   }
 
-      &::placeholder {
-         @extend .text-gray;
-         font-weight: 500
-      }
+   a {
+      @extend .text-cyan
    }
 
    button {
       @extend .btn--get-started;
-      border-radius: .4rem
+      font-size: 1rem;
+      border-radius: .4rem;
+
+      @include media(1040px) {
+         margin-left: 1rem;
+      }
    }
 }
 
 .stats-cotainer {
    background-color: #f0f1f6;
-   margin-top: -105px;
    padding: 4rem 1.5rem;
    position: relative;
 
@@ -266,6 +353,7 @@ div.hero {
          left: 49%;
          width: 10px;
          height: 110vh;
+         min-height: 640px;
 
          @include media(1040px) {
             transform: rotate(90deg);

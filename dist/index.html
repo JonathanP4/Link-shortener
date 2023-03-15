@@ -6,6 +6,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="/index.b10d73a7.css">
+   <script defer="" src="/index.ca39cc5e.js"></script>
    <title>URL Shortening API</title>
 </head>
 
@@ -29,10 +30,28 @@
             </div>
          </div>
       </div>
-      <div class="shortener-container">
-         <input type="text" placeholder="Shorten a link here...">
-         <button type="button">Shorten It!</button>
+      <div class="form-container">
+         <form class="shortener-container">
+            <input class="input-link" type="text" placeholder="Shorten a link here...">
+            <span class="error-message"></span>
+            <button type="submit">Shorten It!</button>
+         </form>
+         <div class="bg-alt"></div>
       </div>
+
+      <div class="shortened-links">
+         <!-- <div class="link__short">
+            <div>
+               <span>https://www.youtube.com/watch?v=hcuKd-Q_tP8</span>
+            </div>
+            <div>
+               <a href="https://shrtco.de/S7VBUz">https://shrtco.de/S7VBUz</a>
+               <button class="btn--copy">Copy</button>
+            </div>
+         </div>
+          -->
+      </div>
+
       <div class="stats-cotainer">
          <div class="stat__text">
             <h2 class="stats-title">Advanced Statistics</h2>
@@ -134,6 +153,6 @@
          </a>
       </div>
    </footer>
-<script src="/url-shortening.59712999.js"></script></body>
+</body>
 
 </html>

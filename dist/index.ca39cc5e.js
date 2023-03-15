@@ -142,13 +142,13 @@
       this[globalName] = mainExports;
     }
   }
-})({"jQimS":[function(require,module,exports) {
+})({"bWDEI":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
-module.bundle.HMR_BUNDLE_ID = "7055c94b59712999";
+module.bundle.HMR_BUNDLE_ID = "0e49c2a5ca39cc5e";
 "use strict";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, globalThis, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
@@ -556,8 +556,142 @@ function hmrAccept(bundle, id) {
     });
 }
 
-},{}],"4M6V8":[function(require,module,exports) {
+},{}],"4j3ZX":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _shortener = require("./shortener");
+var _view = require("./view");
+var _viewDefault = parcelHelpers.interopDefault(_view);
+const shortenLinkControl = async function() {
+    try {
+        // Get text input value
+        const url = (0, _viewDefault.default).inputValue();
+        // Return API response
+        const short = await _shortener.shortenLink(url);
+        console.log(url);
+        // Show markup
+        (0, _viewDefault.default).insertMarkup([
+            short
+        ]);
+    } catch (err) {
+        const errorMessage = err.message.split(",")[0];
+        (0, _viewDefault.default).renderError(errorMessage);
+    }
+};
+const getStorageData = function() {
+    const data = _shortener.getLocalStorage();
+    if (!data) return;
+    (0, _viewDefault.default).insertMarkup(data);
+};
+getStorageData();
+const init = function() {
+    (0, _viewDefault.default).submitEvent(shortenLinkControl);
+};
+init();
 
-},{}]},["jQimS","4M6V8"], "4M6V8", "parcelRequirefc24")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"hMyTC","./view":"j2Xf8","./shortener":"9OzD6"}],"hMyTC":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
 
-//# sourceMappingURL=url-shortening.59712999.js.map
+},{}],"j2Xf8":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+class View {
+    _form = document.querySelector(".shortener-container");
+    _textInput = document.querySelector(".input-link");
+    _errorMessage = document.querySelector(".error-message");
+    _linksContainer = document.querySelector(".shortened-links");
+    inputValue() {
+        return this._textInput.value;
+    }
+    submitEvent(handler) {
+        this._form.addEventListener("submit", function(e) {
+            e.preventDefault();
+            handler();
+        });
+    }
+    generateMarkup(obj) {
+        const markup = `
+      <div class="link__short">
+         <div>
+            <span>${obj.original_link}</span>
+         </div>
+         <div>
+            <a href="${obj.short_link}">${obj.short_link}</a>
+            <button class="btn--copy">Copy</button>
+         </div>
+      </div>`;
+        this._linksContainer.insertAdjacentHTML("beforeend", markup);
+        return markup;
+    }
+    insertMarkup(obj) {
+        obj.map((data)=>{
+            console.log(data);
+            this.generateMarkup(data);
+        });
+    }
+    renderError(message) {
+        this._textInput.classList.add("error");
+        this._errorMessage.textContent = message;
+    }
+}
+exports.default = new View();
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"hMyTC"}],"9OzD6":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "linkData", ()=>linkData);
+parcelHelpers.export(exports, "shortenLink", ()=>shortenLink);
+parcelHelpers.export(exports, "getLocalStorage", ()=>getLocalStorage);
+const linkData = {
+    original_link: "",
+    short_link: ""
+};
+const arr = [];
+const shortenLink = async function(url) {
+    try {
+        const res = await fetch(`https://api.shrtco.de/v2/shorten?url=${url}`);
+        const data = await res.json();
+        if (!data.ok) throw new Error(data.error);
+        linkData.original_link = data.result.original_link;
+        linkData.short_link = data.result.short_link;
+        arr.push(linkData);
+        localStorage.setItem("links", JSON.stringify(arr));
+        return data.result;
+    } catch (err) {
+        throw err;
+    }
+};
+const getLocalStorage = function() {
+    const data = localStorage.getItem("links");
+    return JSON.parse(data);
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"hMyTC"}]},["bWDEI","4j3ZX"], "4j3ZX", "parcelRequirefc24")
+
+//# sourceMappingURL=index.ca39cc5e.js.map
