@@ -234,6 +234,11 @@ div.hero {
          @extend .btn--get-started;
          border-radius: .4rem;
          margin-top: 1rem;
+
+         @include media(1040px) {
+            margin-top: 0;
+            margin-left: 1rem;
+         }
       }
    }
 
@@ -303,6 +308,10 @@ div.hero {
       @extend .btn--get-started;
       font-size: 1rem;
       border-radius: .4rem;
+
+      &.copied {
+         @extend .bg-very-dark-blue
+      }
 
       @include media(1040px) {
          margin-left: 1rem;

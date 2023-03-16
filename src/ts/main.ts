@@ -8,12 +8,12 @@ const shortenLinkControl = async function () {
 
       // Return API response
       const short = await shorten.shortenLink(url)
-      console.log(url);
+      console.log(short);
 
       // Show markup
       view.insertMarkup([short])
    } catch (err) {
-      const errorMessage: string = err.message.split(',')[0]
+      const errorMessage: string = err.message.replaceAll('.', ',').split(',')[0]
       view.renderError(errorMessage)
    }
 }
@@ -29,5 +29,6 @@ getStorageData()
 
 const init = function () {
    view.submitEvent(shortenLinkControl)
+   view.copyEvent()
 }
 init()

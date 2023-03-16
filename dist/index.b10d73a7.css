@@ -43,7 +43,7 @@
   color: #35323e;
 }
 
-.bg-very-dark-blue {
+.bg-very-dark-blue, .link__short button.copied {
   background-color: #35323e;
 }
 
@@ -285,6 +285,13 @@ div.hero button {
 .form-container .shortener-container button {
   border-radius: .4rem;
   margin-top: 1rem;
+}
+
+@media (min-width: 1040px) {
+  .form-container .shortener-container button {
+    margin-top: 0;
+    margin-left: 1rem;
+  }
 }
 
 .form-container .bg-alt {

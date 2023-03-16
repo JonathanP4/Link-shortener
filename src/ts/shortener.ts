@@ -9,7 +9,7 @@ export const linkData: template = {
    short_link: ''
 }
 
-const arr: object[] = []
+let arr: object[] = []
 
 export const shortenLink = async function (url: string) {
    try {
@@ -33,5 +33,9 @@ export const shortenLink = async function (url: string) {
 export const getLocalStorage = function () {
    const data: any = localStorage.getItem('links')
 
+   if (data) arr = JSON.parse(data)
+
    return JSON.parse(data)
 }
+
+console.log(arr);

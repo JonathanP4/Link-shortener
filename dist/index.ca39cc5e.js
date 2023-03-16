@@ -567,13 +567,13 @@ const shortenLinkControl = async function() {
         const url = (0, _viewDefault.default).inputValue();
         // Return API response
         const short = await _shortener.shortenLink(url);
-        console.log(url);
+        console.log(short);
         // Show markup
         (0, _viewDefault.default).insertMarkup([
             short
         ]);
     } catch (err) {
-        const errorMessage = err.message.split(",")[0];
+        const errorMessage = err.message.replaceAll(".", ",").split(",")[0];
         (0, _viewDefault.default).renderError(errorMessage);
     }
 };
@@ -585,10 +585,43 @@ const getStorageData = function() {
 getStorageData();
 const init = function() {
     (0, _viewDefault.default).submitEvent(shortenLinkControl);
+    (0, _viewDefault.default).copyEvent();
 };
 init();
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"hMyTC","./view":"j2Xf8","./shortener":"9OzD6"}],"hMyTC":[function(require,module,exports) {
+},{"./shortener":"9OzD6","./view":"j2Xf8","@parcel/transformer-js/src/esmodule-helpers.js":"hMyTC"}],"9OzD6":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "linkData", ()=>linkData);
+parcelHelpers.export(exports, "shortenLink", ()=>shortenLink);
+parcelHelpers.export(exports, "getLocalStorage", ()=>getLocalStorage);
+const linkData = {
+    original_link: "",
+    short_link: ""
+};
+let arr = [];
+const shortenLink = async function(url) {
+    try {
+        const res = await fetch(`https://api.shrtco.de/v2/shorten?url=${url}`);
+        const data = await res.json();
+        if (!data.ok) throw new Error(data.error);
+        linkData.original_link = data.result.original_link;
+        linkData.short_link = data.result.short_link;
+        arr.push(linkData);
+        localStorage.setItem("links", JSON.stringify(arr));
+        return data.result;
+    } catch (err) {
+        throw err;
+    }
+};
+const getLocalStorage = function() {
+    const data = localStorage.getItem("links");
+    if (data) arr = JSON.parse(data);
+    return JSON.parse(data);
+};
+console.log(arr);
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"hMyTC"}],"hMyTC":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -626,6 +659,7 @@ class View {
     _textInput = document.querySelector(".input-link");
     _errorMessage = document.querySelector(".error-message");
     _linksContainer = document.querySelector(".shortened-links");
+    _copyBtn = document?.querySelectorAll(".btn--copy");
     inputValue() {
         return this._textInput.value;
     }
@@ -634,6 +668,20 @@ class View {
             e.preventDefault();
             handler();
         });
+    }
+    disableButton(e) {
+        e.target.textContent = "Copied!";
+        e.target.classList.add("copied");
+        e.target.style.pointerEvents = "none";
+    }
+    copyEvent() {
+        this._linksContainer.addEventListener("click", (function(e) {
+            if (e.target.classList.contains("btn--copy")) {
+                const link = e.target.parentElement.querySelector("a");
+                navigator.clipboard.writeText(link.textContent);
+                this.disableButton(e);
+            }
+        }).bind(this));
     }
     generateMarkup(obj) {
         const markup = `
@@ -650,8 +698,9 @@ class View {
         return markup;
     }
     insertMarkup(obj) {
+        this._textInput.classList?.remove("error");
+        this._errorMessage.textContent = "";
         obj.map((data)=>{
-            console.log(data);
             this.generateMarkup(data);
         });
     }
@@ -661,36 +710,6 @@ class View {
     }
 }
 exports.default = new View();
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"hMyTC"}],"9OzD6":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "linkData", ()=>linkData);
-parcelHelpers.export(exports, "shortenLink", ()=>shortenLink);
-parcelHelpers.export(exports, "getLocalStorage", ()=>getLocalStorage);
-const linkData = {
-    original_link: "",
-    short_link: ""
-};
-const arr = [];
-const shortenLink = async function(url) {
-    try {
-        const res = await fetch(`https://api.shrtco.de/v2/shorten?url=${url}`);
-        const data = await res.json();
-        if (!data.ok) throw new Error(data.error);
-        linkData.original_link = data.result.original_link;
-        linkData.short_link = data.result.short_link;
-        arr.push(linkData);
-        localStorage.setItem("links", JSON.stringify(arr));
-        return data.result;
-    } catch (err) {
-        throw err;
-    }
-};
-const getLocalStorage = function() {
-    const data = localStorage.getItem("links");
-    return JSON.parse(data);
-};
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"hMyTC"}]},["bWDEI","4j3ZX"], "4j3ZX", "parcelRequirefc24")
 

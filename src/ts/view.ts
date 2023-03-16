@@ -3,6 +3,7 @@ class View {
    _textInput = document.querySelector('.input-link');
    _errorMessage = document.querySelector('.error-message');
    _linksContainer = document.querySelector('.shortened-links');
+   _copyBtn = document?.querySelectorAll('.btn--copy')
 
    inputValue() {
       return this._textInput.value
@@ -12,6 +13,22 @@ class View {
          e.preventDefault()
          handler()
       })
+   }
+   disableButton(e) {
+      e.target.textContent = 'Copied!'
+      e.target.classList.add('copied')
+      e.target.style.pointerEvents = 'none'
+   }
+   copyEvent() {
+      this._linksContainer.addEventListener('click', function (e) {
+         if (e.target.classList.contains('btn--copy')) {
+            const link = e.target.parentElement.querySelector('a')
+
+            navigator.clipboard.writeText(link.textContent)
+
+            this.disableButton(e)
+         }
+      }.bind(this))
    }
    generateMarkup(obj: object | any) {
       const markup = `
@@ -29,8 +46,9 @@ class View {
 
    }
    insertMarkup(obj: object[]) {
+      this._textInput.classList?.remove('error')
+      this._errorMessage.textContent = ''
       obj.map(data => {
-         console.log(data);
          this.generateMarkup(data)
       })
    }
