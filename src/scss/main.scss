@@ -376,7 +376,7 @@ div.hero {
       right: 0;
       top: 53%;
       z-index: 1;
-      height: 14rem;
+      height: 9rem;
    }
 }
 
@@ -467,7 +467,7 @@ div.hero {
          margin-bottom: 1rem;
 
          @include media(1040px) {
-            font-size: 2.5rem;
+            font-size: 2rem;
          }
       }
 
