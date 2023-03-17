@@ -451,7 +451,7 @@ div.hero {
    }
 }
 
-.stats-cotainer {
+.stats-container {
    background-color: #f0f1f6;
    padding: 4rem 1.5rem;
    position: relative;
@@ -465,6 +465,10 @@ div.hero {
       h2 {
          margin-top: 4.5rem;
          margin-bottom: 1rem;
+
+         @include media(1040px) {
+            font-size: 2.5rem;
+         }
       }
 
       @include media(1040px) {
@@ -500,7 +504,7 @@ div.hero {
             transform: rotate(90deg);
             top: 23%;
             height: 100vmin;
-            min-height: 635px;
+            max-height: 635px;
          }
       }
    }
