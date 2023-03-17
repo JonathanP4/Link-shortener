@@ -8,7 +8,6 @@ const shortenLinkControl = async function () {
 
       // Return API response
       const short = await shorten.shortenLink(url)
-      console.log(short);
 
       // Show markup
       view.insertMarkup([short])
@@ -19,7 +18,7 @@ const shortenLinkControl = async function () {
 }
 
 const getStorageData = function () {
-   const data = shorten.getLocalStorage()
+   const data: any = shorten.getLocalStorage()
 
    if (!data) return
 
@@ -30,5 +29,6 @@ getStorageData()
 const init = function () {
    view.submitEvent(shortenLinkControl)
    view.copyEvent()
+   view.toggleMobileMenu()
 }
 init()

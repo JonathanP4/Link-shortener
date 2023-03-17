@@ -1,9 +1,15 @@
+import { ApiData } from "./config";
+import * as Clipboard from "../../node_modules/clipboard/dist/clipboard"
+
 class View {
    _form = document.querySelector('.shortener-container');
    _textInput = document.querySelector('.input-link');
    _errorMessage = document.querySelector('.error-message');
    _linksContainer = document.querySelector('.shortened-links');
    _copyBtn = document?.querySelectorAll('.btn--copy')
+   _bars = document.querySelector('.bars')
+   _mobileNav = document.querySelector('.mobile-nav__container')
+   i = 0
 
    inputValue() {
       return this._textInput.value
@@ -14,38 +20,51 @@ class View {
          handler()
       })
    }
-   disableButton(e) {
-      e.target.textContent = 'Copied!'
-      e.target.classList.add('copied')
-      e.target.style.pointerEvents = 'none'
+   changeButton(evt) {
+      const targetEl = evt.target
+      targetEl.textContent = 'Copied!'
+      targetEl.classList.add('copied');
+      targetEl.style.pointerEvents = 'none'
+      this.timeout(targetEl)
+   }
+   toggleMobileMenu() {
+      this._bars.addEventListener('click', function (e) {
+         this._mobileNav.classList.toggle('hide')
+      }.bind(this))
+   }
+   timeout(targetEl) {
+      setTimeout(() => {
+         targetEl.textContent = 'Copy'
+         targetEl.classList.remove('copied');
+         targetEl.style.pointerEvents = 'initial'
+      }, 3000)
    }
    copyEvent() {
-      this._linksContainer.addEventListener('click', function (e) {
-         if (e.target.classList.contains('btn--copy')) {
-            const link = e.target.parentElement.querySelector('a')
+      new Clipboard('.btn--copy')
 
-            navigator.clipboard.writeText(link.textContent)
-
-            this.disableButton(e)
+      this._linksContainer.addEventListener('click', function (evt) {
+         if (evt.target.classList.contains('btn--copy')) {
+            this.changeButton(evt)
          }
       }.bind(this))
    }
-   generateMarkup(obj: object | any) {
+   generateMarkup(obj: ApiData) {
+      let j = this.i++
       const markup = `
       <div class="link__short">
          <div>
             <span>${obj.original_link}</span>
          </div>
          <div>
-            <a href="${obj.short_link}">${obj.short_link}</a>
-            <button class="btn--copy">Copy</button>
+            <a href="${obj.short_link}" id="short_link${j}">${obj.short_link}</a>
+            <button class="btn--copy" data-clipboard-action="copy" data-clipboard-target="#short_link${j}">Copy</button>
          </div>
       </div>`;
       this._linksContainer.insertAdjacentHTML('beforeend', markup)
       return markup
 
    }
-   insertMarkup(obj: object[]) {
+   insertMarkup(obj: ApiData[]) {
       this._textInput.classList?.remove('error')
       this._errorMessage.textContent = ''
       obj.map(data => {

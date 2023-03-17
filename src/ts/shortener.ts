@@ -1,17 +1,14 @@
-interface template {
-   original_link: string
-   short_link: string
+import { ApiData } from './config'
 
-}
 
-export const linkData: template = {
+export const linkData: ApiData = {
    original_link: '',
    short_link: ''
 }
 
-let arr: object[] = []
+let arr: ApiData[] = []
 
-export const shortenLink = async function (url: string) {
+export const shortenLink: (url: string) => Promise<any> | never = async function (url) {
    try {
       const res = await fetch(`https://api.shrtco.de/v2/shorten?url=${url}`)
       const data = await res.json()
@@ -30,12 +27,10 @@ export const shortenLink = async function (url: string) {
    }
 }
 
-export const getLocalStorage = function () {
+export const getLocalStorage: () => string = function () {
    const data: any = localStorage.getItem('links')
 
    if (data) arr = JSON.parse(data)
 
    return JSON.parse(data)
 }
-
-console.log(arr);

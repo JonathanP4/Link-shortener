@@ -2,7 +2,6 @@
   "name": "url-shortening",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "start": "parcel ./src/index.html",
     "build": "parcel build ./src/index.html"
@@ -11,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "clipboard": "^2.0.11",
     "parcel": "^2.8.3"
   },
   "dependencies": {

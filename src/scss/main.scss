@@ -1,5 +1,4 @@
 @use 'variables' as var;
-@use 'mixins';
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
 
 :root {
@@ -38,13 +37,16 @@ a {
    text-decoration: none;
 }
 
+ul {
+   list-style-type: none;
+}
+
 p {
    @extend .text-gray;
    font-size: 1rem;
 }
 
-img,
-svg {
+img {
    max-width: 100%;
 }
 
@@ -57,7 +59,25 @@ body {
    text-align: center;
 }
 
-button.btn--get-started {
+::-webkit-scrollbar {
+   width: 12px;
+}
+
+::-webkit-scrollbar-track {
+   background-color: rgb(228, 228, 228);
+}
+
+::-webkit-scrollbar-thumb {
+   @extend .bg-dark-violet;
+   border-radius: .6rem;
+
+}
+
+::-webkit-scrollbar-thumb:hover {
+   background-color: lighten(map-get(var.$colors, 'dark-violet'), 15%)
+}
+
+.btn--get-started {
    @extend .bg-cyan;
    font-size: 1.2rem;
    padding: .6em 1.8em;
@@ -77,12 +97,107 @@ main {
 
 nav {
    display: flex;
+   position: relative;
    justify-content: space-between;
    align-items: center;
    padding: 1.5rem;
 
+   .bars {
+      cursor: pointer;
+   }
+
    @include media(1040px) {
       padding: 1.5rem 4rem;
+      justify-content: unset;
+
+      img {
+         margin-right: 1rem;
+      }
+
+      .bars {
+         display: none
+      }
+   }
+
+   a:hover {
+      color: black
+   }
+
+   .desktop-nav {
+      @extend .text-grayish-violet;
+      font-weight: 500;
+      display: none;
+      flex: 1 1 auto;
+      justify-content: space-between;
+      align-items: center;
+
+      @include media(1040px) {
+         display: flex;
+      }
+
+      a {
+         margin-left: 1.5rem;
+      }
+
+      a.btn--get-started {
+         font-size: 1rem;
+         color: white;
+
+         &:hover {
+            background-color: lighten(map-get(var.$colors, 'cyan'), 12%);
+         }
+      }
+   }
+
+   .mobile-nav__container {
+      @extend .bg-dark-violet;
+      border-radius: .6rem;
+      position: absolute;
+      color: white;
+      font-weight: 600;
+      left: 1.5rem;
+      right: 1.5rem;
+      top: 5rem;
+      display: grid;
+      padding: 2rem 1.5rem;
+
+      &.hide {
+         transform: translateY(-9.5rem) scaleY(0%);
+      }
+
+      @include media(1040px) {
+         display: none;
+      }
+
+      li {
+         margin-bottom: 1.2rem;
+      }
+
+      ul.login li:nth-child(2) {
+         margin-bottom: 0;
+      }
+
+      hr {
+         background-color: hsl(258, 14%, 34%);
+         height: 1px;
+         border: none;
+         margin-bottom: 1.2rem;
+
+         @include media(1040px) {
+            display: none;
+         }
+      }
+
+      a.btn--get-started {
+         font-size: 1rem;
+         display: flex;
+         justify-content: center;
+
+         &:hover {
+            transform: scale(103%);
+            background-color: lighten(map-get(var.$colors, 'cyan'), 12%);
+         }
+      }
    }
 }
 
@@ -198,6 +313,9 @@ div.hero {
       border-radius: .6rem;
 
       @include media(1040px) {
+         background-image: url('../images/bg-shorten-desktop.svg');
+         background-position: center -15px;
+         background-size: cover;
          margin: 1.5rem 4rem;
          display: flex;
          padding: 2rem;
@@ -205,9 +323,14 @@ div.hero {
 
       .error-message {
          @extend .text-red;
-         // display: none;
          text-align: left;
          font-size: .8rem;
+
+         @include media(1040px) {
+            position: absolute;
+            left: 2rem;
+            bottom: 0.8rem;
+         }
       }
 
       input {
@@ -234,6 +357,10 @@ div.hero {
          @extend .btn--get-started;
          border-radius: .4rem;
          margin-top: 1rem;
+
+         &:hover {
+            background-color: lighten(map-get(var.$colors, 'cyan'), 20%);
+         }
 
          @include media(1040px) {
             margin-top: 0;
@@ -301,13 +428,18 @@ div.hero {
    }
 
    a {
-      @extend .text-cyan
+      @extend .text-cyan;
+      width: fit-content;
    }
 
    button {
       @extend .btn--get-started;
       font-size: 1rem;
       border-radius: .4rem;
+
+      &:hover {
+         opacity: .6;
+      }
 
       &.copied {
          @extend .bg-very-dark-blue
@@ -445,38 +577,38 @@ footer {
    @extend .bg-very-dark-violet;
    padding: 2rem;
    color: white;
+   font-size: .9rem;
 
-   @include media(800px) {
+   @include media(920px) {
       display: flex;
       align-items: baseline;
-      padding: 6rem 0;
-      justify-content: space-around;
+      justify-content: space-between;
+   }
+
+   @include media(1000px) {
+      padding: 6rem 4rem;
    }
 
    img.logo {
       filter: invert(100%);
       margin-bottom: 2rem;
 
-      @include media(800px) {
+      @include media(920px) {
          margin-bottom: 0;
       }
    }
 
    dl {
       display: grid;
-      gap: 2rem;
+      justify-content: center;
 
-      @include media(800px) {
-         grid-template-columns: repeat(3, 1fr);
-         gap: 5%;
+      @include media(920px) {
+         grid-template-columns: repeat(3, auto);
          text-align: left;
-         align-self: flex-start
-      }
-
-      div {
-         @extend dl;
-         display: block;
-         gap: .6rem;
+         align-self: flex-start;
+         width: 40%;
+         min-width: 390px;
+         justify-content: space-between;
       }
    }
 
@@ -486,7 +618,15 @@ footer {
    }
 
    dd {
-      @extend .text-grayish-violet
+      margin-bottom: .4rem
+   }
+
+   a {
+      @extend .text-grayish-violet;
+
+      &:hover {
+         @extend .text-cyan;
+      }
    }
 
    .socials {
@@ -495,9 +635,36 @@ footer {
       gap: 1.5rem;
       margin-top: 2rem;
       padding: 0 2rem;
+      // transition: all 0s;
 
-      @include media(800px) {
+      @include media(920px) {
          margin-top: 0;
       }
+
+      svg {
+         color: white;
+         transition: all 0s;
+
+         &:hover {
+            @extend .text-cyan
+         }
+      }
+   }
+}
+
+.attribution {
+   @extend .bg-very-dark-violet;
+   text-align: center;
+   font-size: .7rem;
+   padding: 1.2rem;
+   color: white;
+   word-spacing: .12rem;
+
+   @include media(1040px) {
+      font-size: .9rem;
+   }
+
+   a {
+      @extend .text-cyan
    }
 }
