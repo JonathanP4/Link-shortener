@@ -53,7 +53,7 @@ class View {
       const markup = `
       <div class="link__short">
          <div>
-            <span>${obj.original_link}</span>
+            <input type="text" disabled value="${obj.original_link}"></input>
          </div>
          <div>
             <a href="${obj.short_link}" id="short_link${j}">${obj.short_link}</a>
