@@ -56,7 +56,7 @@ class View {
             <input type="text" disabled value="${obj.original_link}"></input>
          </div>
          <div>
-            <a href="${obj.short_link}" id="short_link${j}">${obj.short_link}</a>
+            <span href="${obj.short_link}" target="blank" id="short_link${j}">${obj.short_link}</span>
             <button class="btn--copy" data-clipboard-action="copy" data-clipboard-target="#short_link${j}">Copy</button>
          </div>
       </div>`;

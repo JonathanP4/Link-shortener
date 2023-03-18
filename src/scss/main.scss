@@ -407,13 +407,19 @@ div.hero {
 
    div:nth-child(1) {
       text-align: left;
+      display: flex;
+      width: 100%;
       border-bottom: 1px solid map-get(var.$colors, 'gray');
 
-      input[type="text"] {
+      input {
          background: transparent;
          font-size: 1rem;
          color: black;
          width: 100%;
+
+         @include media(1040px) {
+            width: 95%;
+         }
       }
 
       @include media(1040px) {
@@ -434,7 +440,7 @@ div.hero {
       }
    }
 
-   a {
+   span {
       @extend .text-cyan;
       width: fit-content;
    }
