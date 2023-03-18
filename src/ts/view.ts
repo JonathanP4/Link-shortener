@@ -60,7 +60,7 @@ class View {
             <button class="btn--copy" data-clipboard-action="copy" data-clipboard-target="#short_link${j}">Copy</button>
          </div>
       </div>`;
-      this._linksContainer.insertAdjacentHTML('beforeend', markup)
+      this._linksContainer.insertAdjacentHTML('afterbegin', markup)
       return markup
 
    }
